@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/css/bootstrap.min.css}">
+    <script src="../../static/js/bootstrap.bundle.min.js"
+            th:src="@{/js/bootstrap.bundle.min.js}">
+    </script>
+    <meta charset="UTF-8">
+    <title>Übersicht Prüfungen</title>
+</head>
+<body class="container">
+
+<header>
+    <!-- Hier soll später eine Navbar rein-->
+</header>
+
+<main>
+    <h1>Übersicht Prüfungen</h1>
+
+    <h2>Prüfung/Prüfungen</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Beschreibung</th>
+            <th>Erstellt von</th>
+            <th>Erstellt am</th>
+            <th>Öffnen</th>
+            <th>Löschen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pruefung : ${pruefungen}">
+            <td th:text="${pruefung.titel}"></td>
+            <td th:text="${pruefung.beschreibung}"></td>
+            <td th:text="${pruefung.erstelltVon}"></td>
+            <td th:text="${pruefung.erstelltAm}"></td>
+            <td>
+                <a th:href="@{/pruefung/{id}(id=${pruefung.id})}">
+                    Öffnen
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/pruefung/loeschen/{id}(id=${pruefung.id})}">
+                    Löschen
+                </a>
+            </td>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="">Prüfung erstellen</a>
+        <a href="">Abbrechen</a>
+    </p>
+</main>
+
+<footer>
+    <p><small>Made by Treybit</small></p>
+</footer>
+
+</body>
+</html>

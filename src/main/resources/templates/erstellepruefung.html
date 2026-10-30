@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/css/bootstrap.min.css}">
+    <script src="../../static/js/bootstrap.bundle.min.js"
+            th:src="@{/js/bootstrap.bundle.min.js}">
+    </script>
+    <meta charset="UTF-8">
+    <title>Prüfung erstellen</title>
+</head>
+<body class="container">
+
+<header>
+    <!-- Hier soll später eine Navbar rein-->
+</header>
+
+<main>
+
+    <h1>Prüfung erstellen</h1>
+    <p>Hier kannst du eine neue Pürfung erstellen:</p>
+
+    <form th:action="@{/pruefung/erstellen}"
+          th:object="${pruefungForm}"
+          method="post">
+
+        <p><label for="titel">Titel:</label></p>
+        <input type="text" id="titel" name="titel" th:field="*{titel}">
+
+        <p class="text-danger" th:if="${#fields.hasErrors('titel')}">
+            Titel eingeben
+        </p>
+
+        <p><label for="beschreibung">Beschreibung:</label></p>
+        <textarea id="beschreibung" name="beschreibung" rows="4" cols="50" th:field="*{beschreibung}"></textarea>
+
+        <p class="text-danger" th:if="${#fields.hasErrors('beschreibung')}">
+            Beschreibung eingeben
+        </p>
+
+        <br>
+
+        <p>
+            <button type="submit">Erstellen</button>
+            <a href="">Abbrechen</a>
+        </p>
+
+    </form>
+
+</main>
+
+<footer>
+    <p><small>Made by Treybit</small></p>
+</footer>
+
+</body>
+</html>

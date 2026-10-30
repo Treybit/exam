@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/css/bootstrap.min.css}">
+    <script src="../../static/js/bootstrap.bundle.min.js"
+            th:src="@{/js/bootstrap.bundle.min.js}">
+    </script>
+    <meta charset="UTF-8">
+    <title>Frage bearbeiten</title>
+</head>
+<body class="container">
+
+<header>
+    <!-- Hier soll später eine Navbar rein-->
+</header>
+
+<main>
+    <h1>Frage bearbeiten</h1>
+    <p>Hier kannst du eine neue Frage hinzufügen/erstellen:</p>
+
+    <form action="post">
+
+        <p><label for="frage">Frage:</label></p>
+        <textarea id="frage" name="frage" rows="4" cols="50"></textarea>
+        <p><label for="loesung">Musterlösung/Antwort:</label></p>
+        <textarea id="loesung" name="loesung" rows="4" cols="50"></textarea>
+        <p>
+            <label for="punkte">Punkte:</label>
+            <input type="number" id="punkte" name="punkte">
+        </p>
+
+        <p>
+            <button>Bearbeiten</button>
+            <a href="">Abbrechen</a>
+        </p>
+
+    </form>
+
+</main>
+
+<footer>
+    <p><small>Made by Treybit</small></p>
+</footer>
+
+</body>
+</html>
