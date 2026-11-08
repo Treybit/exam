@@ -44,6 +44,10 @@ public class Pruefung {
         return erstelltVon;
     }
 
+    public int getAnzahlFragen(){
+        return fragen.size();
+    }
+
     public List<Frage> getFragen() {
         //Eine unveränderte Liste, damit man die ursprüngliche nicht bearbeiten kann
         return List.copyOf(fragen);

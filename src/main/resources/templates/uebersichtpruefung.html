@@ -27,6 +27,7 @@
             <th>Beschreibung</th>
             <th>Erstellt von</th>
             <th>Erstellt am</th>
+            <th>Anzahl Fragen</th>
             <th>Öffnen</th>
             <th>Löschen</th>
         </tr>
@@ -37,6 +38,7 @@
             <td th:text="${pruefung.beschreibung}"></td>
             <td th:text="${pruefung.erstelltVon}"></td>
             <td th:text="${pruefung.erstelltAm}"></td>
+            <td th:text="${pruefung.anzahlFragen}"></td>
             <td>
                 <a th:href="@{/pruefung/{id}(id=${pruefung.id})}">
                     Öffnen

@@ -1,9 +1,11 @@
 package com.treybit.exam.web.pruefung;
 
+import com.treybit.exam.service.PruefungService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.assertj.MockMvcTester;
@@ -21,6 +23,20 @@ public class PruefungControllerTest {
     @Autowired
     MockMvc mvc;
 
+    @MockitoBean
+    PruefungService pruefungService;
+
+    @Test
+    @DisplayName("Die Übersichtsseite ist erreichbar")
+    void uebersichtsseiteErreichbar() throws Exception{
+        MvcResult uebersicht = mvc.perform(get("/pruefungen"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String contentAsString = uebersicht.getResponse().getContentAsString();
+        assertThat(contentAsString).contains("Prüfung/Prüfungen");
+    }
+
     @Test
     @DisplayName("Das Formular um eine Prüfung zu erstellen ist erreichbar unter /pruefung/erstellen")
     void formularPruefungErstellenErreichbar() throws Exception {
@@ -33,4 +49,5 @@ public class PruefungControllerTest {
         String contentAsString = pruefungForm.getResponse().getContentAsString();
         assertThat(contentAsString).contains("Prüfung erstellen");
     }
+
 }
