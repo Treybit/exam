@@ -50,4 +50,8 @@ public class PruefungControllerTest {
         assertThat(contentAsString).contains("Prüfung erstellen");
     }
 
+    @Test
+    @DisplayName("Das löschen einer Prüfung kann aufgerufen werden")
+    void
+
 }

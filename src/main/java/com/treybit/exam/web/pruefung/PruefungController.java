@@ -60,11 +60,15 @@ public class PruefungController {
         return "redirect:/pruefungen";
     }
 
-    //Prüfung löschen
+    //Prüfung löschen mit GET und POST
     @GetMapping("/pruefung/loeschen/{id}")
     public String loeschePruefung(@PathVariable UUID id, Model model){
 
         Optional<Pruefung> pruefung = pruefungService.findePruefungMitId(id);
+
+        if(pruefung.isEmpty()){
+            return "404";
+        }
 
         model.addAttribute("pruefung", pruefung.get());
 
