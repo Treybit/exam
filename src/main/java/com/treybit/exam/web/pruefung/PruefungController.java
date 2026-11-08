@@ -18,6 +18,8 @@ import java.util.UUID;
 @Controller
 public class PruefungController {
 
+
+
     //Alle Prüfungen ansehen
     @GetMapping("/pruefungen")
     public String uebersichtPruefung(Model model){
@@ -26,6 +28,7 @@ public class PruefungController {
         return "uebersichtpruefung";
     }
 
+    //Neue Prüfung erstellen mit GET und POST
     @GetMapping("/pruefung/erstellen")
     public String erstellePruefung(Model model){
 
@@ -33,7 +36,6 @@ public class PruefungController {
 
         return "erstellepruefung";
     }
-
     @PostMapping("/pruefung/erstellen")
     public String erstellePruefung(Model model, @Valid PruefungForm pruefungForm, Errors errors){
 

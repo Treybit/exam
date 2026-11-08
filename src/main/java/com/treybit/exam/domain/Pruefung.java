@@ -13,7 +13,7 @@ public class Pruefung {
     private LocalDateTime erstelltAm;
     private String erstelltVon;
 
-    List<Frage> fragen = new ArrayList<>();
+    private List<Frage> fragen = new ArrayList<>();
 
 
     public Pruefung(UUID id, String titel, String beschreibung, LocalDateTime erstelltAm, String erstelltVon) {
@@ -42,5 +42,18 @@ public class Pruefung {
 
     public String getErstelltVon() {
         return erstelltVon;
+    }
+
+    public List<Frage> getFragen() {
+        //Eine unveränderte Liste, damit man die ursprüngliche nicht bearbeiten kann
+        return List.copyOf(fragen);
+    }
+
+    public void addFrage(Frage frage) {
+        fragen.add(frage);
+    }
+
+    public void removeFrage(Frage frage) {
+        fragen.remove(frage);
     }
 }
