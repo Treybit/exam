@@ -1,6 +1,7 @@
 package com.treybit.exam.web.pruefung;
 
 import com.treybit.exam.domain.Pruefung;
+import com.treybit.exam.service.PruefungService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +19,17 @@ import java.util.UUID;
 @Controller
 public class PruefungController {
 
+    private final PruefungService pruefungService;
 
+    public PruefungController(PruefungService pruefungService) {
+        this.pruefungService = pruefungService;
+    }
 
     //Alle Prüfungen ansehen
     @GetMapping("/pruefungen")
     public String uebersichtPruefung(Model model){
 
-        //model.addAttribute("pruefungen", pruefungen);
+        model.addAttribute("pruefungen", pruefungService.findeAllePruefungen());
         return "uebersichtpruefung";
     }
 
@@ -42,9 +47,19 @@ public class PruefungController {
         if(errors.hasErrors()){
             return "erstellepruefung";
         }
-        model.addAttribute("pruefungForm", pruefungForm);
-        System.out.println(pruefungForm.getTitel() + " " + pruefungForm.getBeschreibung());
-        return "redirect:/";
+        //Brauche ich das?
+        //model.addAttribute("pruefungForm", pruefungForm);
+
+        //Das muss noch verschoben werden, erstmal nur eine Notlösung zum Testen
+        Pruefung pruefung = new Pruefung(UUID.randomUUID(),
+                pruefungForm.getTitel(),
+                pruefungForm.getBeschreibung(),
+                LocalDateTime.now(),
+                "Treybit");
+
+        pruefungService.speicherePruefung(pruefung);
+
+        return "redirect:/pruefungen";
     }
 
 }
