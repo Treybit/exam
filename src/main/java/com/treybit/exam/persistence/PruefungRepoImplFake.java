@@ -35,6 +35,7 @@ public class PruefungRepoImplFake implements PruefungRepo {
 
     @Override
     public void loeschePruefungMitId(UUID id) {
+        System.out.println("Crasht es hier?");
         pruefungMap.remove(id);
     }
 }

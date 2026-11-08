@@ -7,14 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class PruefungController {
@@ -58,6 +56,25 @@ public class PruefungController {
                 "Treybit");
 
         pruefungService.speicherePruefung(pruefung);
+
+        return "redirect:/pruefungen";
+    }
+
+    //Prüfung löschen
+    @GetMapping("/pruefung/loeschen/{id}")
+    public String loeschePruefung(@PathVariable UUID id, Model model){
+
+        Optional<Pruefung> pruefung = pruefungService.findePruefungMitId(id);
+
+        model.addAttribute("pruefung", pruefung.get());
+
+        return "loeschepruefung";
+    }
+
+    @PostMapping("/pruefung/loeschen/{id}")
+    public String loeschePruefung(@PathVariable UUID id) {
+
+        pruefungService.loeschePruefungMitId(id);
 
         return "redirect:/pruefungen";
     }

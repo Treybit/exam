@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/css/bootstrap.min.css}">
+    <script src="../../static/js/bootstrap.bundle.min.js"
+            th:src="@{/js/bootstrap.bundle.min.js}">
+    </script>
+    <meta charset="UTF-8">
+    <title>Prüfung löschen</title>
+</head>
+<body class="container">
+
+<header>
+    <!-- Hier soll später eine Navbar rein-->
+</header>
+
+<main>
+    <h1>Prüfung löschen</h1>
+    <span th:object="${pruefung}">
+        <h2>Allgemeine Informationen:</h2>
+    <p>
+        <strong>Titel:</strong>
+        <span th:text="*{titel}">
+            AlDat
+        </span>
+    </p>
+    <p>
+        <strong>Beschreibung</strong>
+        <span th:text="*{beschreibung}">
+            Kurzer Test für eine Abfrage.
+        </span>
+    </p>
+    </span>
+
+    <p class="text-danger">
+        <strong>Achtung:</strong>
+        Möchtest du diese Prüfung wirklich löschen?
+        Diese Aktion kann nicht rückgängig gemacht werden.
+    </p>
+
+
+    <form th:action="@{/pruefung/loeschen/{id}(id=${pruefung.id})}" method="post">
+        <button type="submit">Ja, endgültig löschen</button>
+        <a th:href="@{/}">Abbrechen</a>
+    </form>
+</main>
+
+<footer>
+    <p><small>Made by Treybit</small></p>
+</footer>
+
+</body>
+</html>
