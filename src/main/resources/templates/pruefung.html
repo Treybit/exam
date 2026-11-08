@@ -16,27 +16,32 @@
 </header>
 
 <main>
-    <h1>Prüfung</h1>
+    <span th:object="${pruefung}">
+        <h1>Prüfung</h1>
     <h2>Allgemeine Informationen:</h2>
     <p>
         <strong>Titel:</strong>
-        <span>
+        <span th:text="*{titel}">
             Algorithmen und Datenstrukturen
         </span>
     </p>
     <p>
         <strong>Beschreibung</strong>
-        <span>
+        <span th:text="*{beschreibung}">
             Kurzer Test für eine Abfrage.
         </span>
     </p>
     <p>
         <strong>Erstellt von: </strong>
-        <span>Treybit</span>
+        <span th:text="*{erstelltVon}">
+            Treybit
+        </span>
     </p>
     <p>
         <strong>Erstellt am: </strong>
-        <span>29.10.2026</span>
+        <span th:text="*{erstelltAm}">
+            29.10.2026
+        </span>
     </p>
 
     <h2>Frage/Fragen:</h2>
@@ -61,25 +66,14 @@
             <td><a href="">Bearbeiten</a></td>
             <td><a href="">Löschen</a></td>
         </tr>
-        <tr>
-            <td>11</td>
-            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad consectetur deserunt et eum exercitationem explicabo facilis in ipsam iure modi necessitatibus nulla pariatur perferendis, porro quidem totam unde veniam?</td>
-            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid animi autem consequuntur dolore doloremque doloribus excepturi laudantium molestias nostrum unde! Quasi vero vitae voluptate. Aperiam assumenda eius fuga illo <voluptates class=""></voluptates></td>
-            <td>5</td>
-            <td><a href="">Bearbeiten</a></td>
-            <td><a href="">Löschen</a></td>
-        </tr>
         </tbody>
     </table>
 
     <p>
-        <a href="">Frage hinzufügen</a>
-        <a href="">Abbrechen</a>
+        <a th:href="@{/pruefung/{id}/frage/erstellen(id=${pruefung.id})}">Frage hinzufügen</a>
+        <a th:href="@{/pruefungen}">Abbrechen</a>
     </p>
-
-
-
-
+    </span>
 </main>
 
 <footer>
