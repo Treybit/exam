@@ -9,13 +9,13 @@
     <meta charset="UTF-8">
     <title>Prüfung erstellen</title>
 </head>
-<body class="container">
+<body>
 
-<header>
+<header th:replace="~{fragments/header :: header}">
     <!-- Hier soll später eine Navbar rein-->
 </header>
 
-<main>
+<main class="container">
 
     <h1>Prüfung erstellen</h1>
     <p>Hier kannst du eine neue Pürfung erstellen:</p>
@@ -42,15 +42,15 @@
 
         <p>
             <button type="submit">Erstellen</button>
-            <a href="">Abbrechen</a>
+            <a th:href="@{/pruefungen}">Abbrechen</a>
         </p>
 
     </form>
 
 </main>
 
-<footer>
-    <p><small>Made by Treybit</small></p>
+<footer th:replace="~{fragments/footer :: footer}">
+    <!-- Hier soll später ein Footer rein -->
 </footer>
 
 </body>

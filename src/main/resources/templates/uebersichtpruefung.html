@@ -9,18 +9,16 @@
     <meta charset="UTF-8">
     <title>Übersicht Prüfungen</title>
 </head>
-<body class="container">
+<body>
 
-<header>
+<header th:replace="~{fragments/header :: header}">
     <!-- Hier soll später eine Navbar rein-->
 </header>
 
-<main>
+<main class="container">
     <h1>Übersicht Prüfungen</h1>
 
-    <h2>Prüfung/Prüfungen</h2>
-
-    <table class="table">
+    <table class="table table-striped">
         <thead>
         <tr>
             <th>Titel</th>
@@ -56,10 +54,11 @@
         <a th:href="@{/pruefung/erstellen}">Prüfung erstellen</a>
         <a th:href="@{/}">Abbrechen</a>
     </p>
+
 </main>
 
-<footer>
-    <p><small>Made by Treybit</small></p>
+<footer th:replace="~{fragments/footer :: footer}">
+    <!-- Hier soll später ein Footer rein -->
 </footer>
 
 </body>

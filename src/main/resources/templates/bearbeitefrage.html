@@ -9,13 +9,13 @@
     <meta charset="UTF-8">
     <title>Frage bearbeiten</title>
 </head>
-<body class="container">
+<body>
 
-<header>
+<header th:replace="~{fragments/header :: header}">
     <!-- Hier soll später eine Navbar rein-->
 </header>
 
-<main>
+<main class="container">
     <h1>Frage bearbeiten</h1>
     <p>Hier kannst du eine neue Frage hinzufügen/erstellen:</p>
 
@@ -39,8 +39,8 @@
 
 </main>
 
-<footer>
-    <p><small>Made by Treybit</small></p>
+<footer th:replace="~{fragments/footer :: footer}">
+    <!-- Hier soll später ein Footer rein -->
 </footer>
 
 </body>

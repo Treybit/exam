@@ -52,6 +52,13 @@ public class PruefungControllerTest {
 
     @Test
     @DisplayName("Das löschen einer Prüfung kann aufgerufen werden")
-    void
+    void formularLoeschen() throws Exception {
+        MvcResult loeschen = mvc.perform(get("/pruefung/loeschen/{id}"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        loeschen.getResponse().getContentAsString().contains("Irgendwas");
+
+    }
 
 }

@@ -9,13 +9,13 @@
     <meta charset="UTF-8">
     <title>Prüfung löschen</title>
 </head>
-<body class="container">
+<body>
 
-<header>
+<header th:replace="~{fragments/header :: header}">
     <!-- Hier soll später eine Navbar rein-->
 </header>
 
-<main>
+<main class="container">
     <h1>Prüfung löschen</h1>
     <span th:object="${pruefung}">
         <h2>Allgemeine Informationen:</h2>
@@ -42,12 +42,12 @@
 
     <form th:action="@{/pruefung/loeschen/{id}(id=${pruefung.id})}" method="post">
         <button type="submit">Ja, endgültig löschen</button>
-        <a th:href="@{/}">Abbrechen</a>
+        <a th:href="@{/pruefungen}">Abbrechen</a>
     </form>
 </main>
 
-<footer>
-    <p><small>Made by Treybit</small></p>
+<footer th:replace="~{fragments/footer :: footer}">
+    <!-- Hier soll später ein Footer rein -->
 </footer>
 
 </body>

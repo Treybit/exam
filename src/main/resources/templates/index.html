@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/css/bootstrap.min.css}">
+    <script src="../../static/js/bootstrap.bundle.min.js"
+            th:src="@{/js/bootstrap.bundle.min.js}">
+    </script>
     <meta charset="UTF-8">
-    <title>Startseite</title>
+    <title>Index</title>
 </head>
 <body>
-<h1>Startseite</h1>
-<p>Ich bin eine Startseite</p>
+
+<header th:replace="~{fragments/header :: header}">
+    <!-- Hier soll später eine Navbar rein-->
+</header>
+
+<main class="container">
+    <!-- Hier soll der Inhalt rein-->
+    <h1>Titel</h1>
+    <p>Text</p>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}">
+    <!-- Hier soll später ein Footer rein -->
+</footer>
+
 </body>
 </html>
