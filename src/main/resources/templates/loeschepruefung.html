@@ -41,7 +41,7 @@
 
 
     <form th:action="@{/pruefung/loeschen/{id}(id=${pruefung.id})}" method="post">
-        <button type="submit">Ja, endgültig löschen</button>
+        <button type="submit" class="btn btn-danger">Ja, endgültig löschen</button>
         <a th:href="@{/pruefungen}">Abbrechen</a>
     </form>
 </main>
