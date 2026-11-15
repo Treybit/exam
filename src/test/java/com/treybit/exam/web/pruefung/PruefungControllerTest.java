@@ -12,12 +12,17 @@ import org.springframework.test.web.servlet.assertj.MockMvcTester;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.UUID;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@WebMvcTest
+@WebMvcTest(PruefungController.class)
 public class PruefungControllerTest {
 
     @Autowired
@@ -34,7 +39,7 @@ public class PruefungControllerTest {
                 .andReturn();
 
         String contentAsString = uebersicht.getResponse().getContentAsString();
-        assertThat(contentAsString).contains("Prüfung/Prüfungen");
+        assertThat(contentAsString).contains("Übersicht Prüfungen");
     }
 
     @Test
@@ -51,14 +56,23 @@ public class PruefungControllerTest {
     }
 
     @Test
-    @DisplayName("Das löschen einer Prüfung kann aufgerufen werden")
-    void formularLoeschen() throws Exception {
-        MvcResult loeschen = mvc.perform(get("/pruefung/loeschen/{id}"))
-                .andExpect(status().isOk())
-                .andReturn();
+    @DisplayName("Man kann über das Formular eine Prüfung erstellen mit POST und wird auf prüfungen weitergeleitet")
+    void formularPruefungErstellenGehtDurch() throws Exception {
 
-        loeschen.getResponse().getContentAsString().contains("Irgendwas");
+        mvc.perform(post("/pruefung/erstellen")
+                .param("titel", "Java Pürfung")
+                .param("beschreibung", "Eine tolle Pürfung")).andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/pruefungen"));
+    }
 
+    @Test
+    @DisplayName("Das Formular geht nicht durch, wenn das 'beschreiben'-Feld leer ist")
+    void formularPruefungErstellenGehtNichtDurch() throws Exception {
+
+        mvc.perform(post("/pruefung/erstellen")
+                        .param("titel", "Java Pürfung")
+                        .param("beschreibung", "")).andExpect(status().isOk());
+        //isOk, weil wir erneut auf der Seite landen, da die Fehlermeldung abgefangen wird
     }
 
 }
