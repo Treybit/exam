@@ -32,6 +32,10 @@ public class Pruefung {
         return titel;
     }
 
+    public void setTitel(String titel){
+        this.titel = titel;
+    }
+
     public String getBeschreibung() {
         return beschreibung;
     }
