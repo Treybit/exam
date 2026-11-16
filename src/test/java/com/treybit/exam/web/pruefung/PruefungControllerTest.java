@@ -93,4 +93,12 @@ public class PruefungControllerTest {
         //Im Controller als Rückgabetyp Model and View einsetzen, aber später
     }
 
+    //Test fürs löschen schreiben und aufrufen
+
+    //@Test
+    //@DisplayName("Die Seite um eine Pürfung anzuschauen geht auf")
+
+    //@Test
+    //@DisplayName("Die Seite um eine Prüfung zu löschen geht auf")
+
 }

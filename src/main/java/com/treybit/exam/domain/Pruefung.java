@@ -2,6 +2,7 @@ package com.treybit.exam.domain;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -42,6 +43,12 @@ public class Pruefung {
 
     public LocalDateTime getErstelltAm() {
         return erstelltAm;
+    }
+
+    public String getErstelltAmToString() {
+        return erstelltAm.format(
+                DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
+        );
     }
 
     public String getErstelltVon() {
