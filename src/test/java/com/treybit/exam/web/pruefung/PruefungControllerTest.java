@@ -112,7 +112,13 @@ public class PruefungControllerTest {
     @DisplayName("Die Seite um eine Pürfung, mit einer bestimmten UUID, anzuschauen geht nicht auf, da ID nicht existiert")
     void pruefungExistiertNicht() throws Exception{
 
+        //Könnte es aus Zufall eine existsierende Prüfung aufrufen?
+        //Wie kann ich konkret hier die Branch aufrufen?
+
         UUID unbekannteUUID = UUID.randomUUID();
+
+        when(pruefungService.findePruefungMitId(unbekannteUUID))
+                .thenReturn(Optional.empty());
 
         assertThat(mockMvcTester.get().uri("/pruefung/{unbekannteUUID}", unbekannteUUID))
                 .hasStatus4xxClientError()

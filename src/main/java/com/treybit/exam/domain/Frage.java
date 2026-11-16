@@ -1,5 +1,6 @@
 package com.treybit.exam.domain;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Frage {
@@ -31,4 +32,14 @@ public class Frage {
     public float getPunkte() {
         return punkte;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return id.equals(((Frage) o).id);
+    }
+
+    @Override
+    public int hashCode() { return Objects.hash(id); }
 }

@@ -8,6 +8,7 @@ import java.util.UUID;
 
 public interface PruefungRepo {
 
+    //Prüfungen
     List<Pruefung> findeAllePruefungen();
 
     void speicherePruefung(Pruefung pruefung);
@@ -17,5 +18,8 @@ public interface PruefungRepo {
     void aktualisierePruefung(Pruefung pruefung);
 
     void loeschePruefungMitId(UUID id);
+
+    //Fragen
+    //???
 
 }

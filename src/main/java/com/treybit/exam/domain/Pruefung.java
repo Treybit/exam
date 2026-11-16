@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Pruefung {
@@ -33,10 +34,6 @@ public class Pruefung {
         return titel;
     }
 
-    public void setTitel(String titel){
-        this.titel = titel;
-    }
-
     public String getBeschreibung() {
         return beschreibung;
     }
@@ -55,6 +52,8 @@ public class Pruefung {
         return erstelltVon;
     }
 
+    //Alles mit dem Objekt Fragen:
+
     public int getAnzahlFragen(){
         return fragen.size();
     }
@@ -71,4 +70,14 @@ public class Pruefung {
     public void removeFrage(Frage frage) {
         fragen.remove(frage);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return id.equals(((Pruefung) o).id);
+    }
+
+    @Override
+    public int hashCode() { return Objects.hash(id); }
 }
