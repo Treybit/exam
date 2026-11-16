@@ -41,11 +41,7 @@ public class PruefungControllerTest {
     void uebersichtsseiteErreichbar() throws Exception{
 
         //Hier nochmal schauen, ob das wirklich ein sinnvoller test ist.
-        Pruefung pruefung1 = new Pruefung(UUID.randomUUID(),
-                "Testinator",
-                "Test",
-                LocalDateTime.now(),
-                "Treybit");
+        Pruefung pruefung1 = PruefungFactory.pruefung();
 
         when(pruefungService.findeAllePruefungen())
                 .thenReturn(new ArrayList<>(List.of(pruefung1)));

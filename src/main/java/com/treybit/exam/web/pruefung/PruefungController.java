@@ -2,14 +2,12 @@ package com.treybit.exam.web.pruefung;
 
 import com.treybit.exam.domain.Pruefung;
 import com.treybit.exam.service.PruefungService;
+import com.treybit.exam.web.exception.PruefungNichtGefundenException;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -62,11 +60,11 @@ public class PruefungController {
 
     //Prüfung aufrufen mit GET und POST
     @GetMapping("pruefung/{id}")
-    public String pruefung(Model model, @PathVariable UUID id){
+    public String pruefung(Model model, @PathVariable UUID id) {
         Optional<Pruefung> pruefung = pruefungService.findePruefungMitId(id);
 
         if(pruefung.isEmpty()){
-            return "404";
+           throw new PruefungNichtGefundenException();
         }
 
         model.addAttribute("pruefung", pruefung.get());
@@ -81,7 +79,7 @@ public class PruefungController {
         Optional<Pruefung> pruefung = pruefungService.findePruefungMitId(id);
 
         if(pruefung.isEmpty()){
-            return "404";
+            throw new PruefungNichtGefundenException();
         }
 
         model.addAttribute("pruefung", pruefung.get());
