@@ -9,6 +9,7 @@ public class Frage {
     private int punkte;
 
     public Frage(UUID id, String frage, String loesung, int punkte) {
+
         this.id = id;
         this.frage = frage;
         this.loesung = loesung;

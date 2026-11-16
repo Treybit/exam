@@ -15,10 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -32,6 +29,9 @@ public class PruefungControllerTest {
 
     @Autowired
     MockMvc mvc;
+
+    @Autowired
+    MockMvcTester mockMvcTester;
 
     @MockitoBean
     PruefungService pruefungService;
@@ -93,11 +93,34 @@ public class PruefungControllerTest {
         //Im Controller als Rückgabetyp Model and View einsetzen, aber später
     }
 
-    //Test fürs löschen schreiben und aufrufen
+    @Test
+    @DisplayName("Die Seite um eine Pürfung, mit einer bestimmten UUID, anzuschauen geht auf")
+    void pruefungExistiert() throws Exception{
 
-    //@Test
-    //@DisplayName("Die Seite um eine Pürfung anzuschauen geht auf")
+        Pruefung pruefung = PruefungFactory.pruefung();
+        UUID id = pruefung.getId();
 
+        when(pruefungService.findePruefungMitId(id)).thenReturn(Optional.of(pruefung));
+
+        assertThat(mockMvcTester.get().uri("/pruefung/{id}", id))
+                .hasStatusOk()
+                .bodyText()
+                .contains("Testinator");
+    }
+
+    @Test
+    @DisplayName("Die Seite um eine Pürfung, mit einer bestimmten UUID, anzuschauen geht nicht auf, da ID nicht existiert")
+    void pruefungExistiertNicht() throws Exception{
+
+        UUID unbekannteUUID = UUID.randomUUID();
+
+        assertThat(mockMvcTester.get().uri("/pruefung/{unbekannteUUID}", unbekannteUUID))
+                .hasStatus4xxClientError()
+                .bodyText()
+                .contains("404");
+    }
+
+    //Test fürs löschen schreiben
     //@Test
     //@DisplayName("Die Seite um eine Prüfung zu löschen geht auf")
 
