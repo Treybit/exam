@@ -6,14 +6,16 @@ import java.util.UUID;
 //Entität
 public class Frage {
     private UUID id;
-    private String frage;
+    private String ueberschrift;
+    private String aufgabenstellung;
     private String loesung;
     private int punkte;
 
-    public Frage(UUID id, String frage, String loesung, int punkte) {
+    public Frage(UUID id, String ueberschrift, String frage, String loesung, int punkte) {
 
         this.id = id;
-        this.frage = frage;
+        this.ueberschrift = ueberschrift;
+        this.aufgabenstellung = frage;
         this.loesung = loesung;
         this.punkte = punkte;
     }
@@ -22,8 +24,8 @@ public class Frage {
         return id;
     }
 
-    public String getFrage() {
-        return frage;
+    public String getAufgabenstellung() {
+        return aufgabenstellung;
     }
 
     public String getLoesung() {

@@ -4,7 +4,6 @@ import com.treybit.exam.domain.Frage;
 import com.treybit.exam.web.markdown.MarkdownToHtml;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.UUID;
 
@@ -12,30 +11,48 @@ public class FrageForm {
 
     MarkdownToHtml markdownToHtml = new MarkdownToHtml();
 
+    @NotBlank(message="Überschrift darf nicht leer sein")
+    private String ueberschrift;
     @NotBlank(message="Frage darf nicht leer sein")
-    private String frage;
+    private String aufgabenstellung;
     @NotBlank(message="Musterlösung darf nicht leer sein")
     private String loesung;
     @NotBlank(message="Es müssen Punkte angegeben werden")
     @Positive(message = "Punkte müssen eine positive ganze Zahl sein")
     private int punkte;
 
-    public FrageForm(String frage, String loesung, int punkte){
-        this.frage = frage;
+    public FrageForm(String aufgabenstellung, String loesung, int punkte){
+        this.aufgabenstellung = aufgabenstellung;
         this.loesung = loesung;
         this.punkte = punkte;
     }
 
-    public String getFrage() {
-        return frage;
+    public String getAufgabenstellung() {
+        return aufgabenstellung;
     }
 
-    public void setFrage(String frage) {
-        this.frage = frage;
+    public void setAufgabenstellung(String aufgabenstellung) {
+        this.aufgabenstellung = aufgabenstellung;
     }
 
     public String getLoesung() {
         return loesung;
+    }
+
+    public MarkdownToHtml getMarkdownToHtml() {
+        return markdownToHtml;
+    }
+
+    public void setMarkdownToHtml(MarkdownToHtml markdownToHtml) {
+        this.markdownToHtml = markdownToHtml;
+    }
+
+    public String getUeberschrift() {
+        return ueberschrift;
+    }
+
+    public void setUeberschrift(String ueberschrift) {
+        this.ueberschrift = ueberschrift;
     }
 
     public void setLoesung(String loesung) {
@@ -53,14 +70,18 @@ public class FrageForm {
     public Frage convertToFrage(FrageForm frageForm){
 
         //Frage als Markdown in HTML konvertieren
-        String frageMarkdown = frageForm.getFrage();
-        String convertFrage = markdownToHtml.convert(frageMarkdown);
+        String aufgabenstellungMarkdown = frageForm.getAufgabenstellung();
+        String convertAufgabenstellung = markdownToHtml.convert(aufgabenstellungMarkdown);
         //Lösung als Markdown in HTML konvertieren
         String loesungMarkdown = frageForm.getLoesung();
         String convertLoesung = markdownToHtml.convert(loesungMarkdown);
 
+        Frage frage = new Frage(UUID.randomUUID(),
+                frageForm.getUeberschrift(),
+                convertAufgabenstellung,
+                convertLoesung,
+                frageForm.getPunkte());
 
-        Frage frage = new Frage(UUID.randomUUID(), convertFrage, convertLoesung, frageForm.getPunkte());
         return frage;
 
     }
