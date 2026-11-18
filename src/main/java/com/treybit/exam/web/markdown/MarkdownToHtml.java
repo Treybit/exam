@@ -7,11 +7,12 @@ import com.vladsch.flexmark.util.data.MutableDataSet;
 import org.owasp.html.PolicyFactory;
 import org.owasp.html.Sanitizers;
 
+//Gehört das in den Web? Nur für die xyzForm Klassen wichtig theoretisch
 public class MarkdownToHtml {
 
     public String convert(String markdown) {
-        // Optionen konfigurieren (Standard reicht meist)
-        MutableDataSet options = new MutableDataSet();
+        // Optionen konfigurieren
+        MutableDataSet options = new MutableDataSet(); // z.B. # Überschrift -> HTML-h1 oder *Kursiv* -> HTML-em
 
         // Parser und Renderer bauen
         Parser parser = Parser.builder(options).build();
