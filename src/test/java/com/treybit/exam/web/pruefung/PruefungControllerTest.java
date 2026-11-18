@@ -127,7 +127,18 @@ public class PruefungControllerTest {
     }
 
     //Test fürs löschen schreiben
-    //@Test
-    //@DisplayName("Die Seite um eine Prüfung zu löschen geht auf")
+    @Test
+    @DisplayName("Die Seite um eine Prüfung zu löschen geht auf mit einer ID und GET")
+    void pruefungLoeschenGehtAuf() throws Exception{
+
+        Pruefung pruefung = PruefungFactory.pruefung();
+
+        when(pruefungService.findePruefungMitId(pruefung.getId())).thenReturn(Optional.of(pruefung));
+
+        assertThat(mockMvcTester.get().uri("/pruefung/loeschen/{id}", pruefung.getId()))
+                .hasStatus2xxSuccessful()
+                .bodyText()
+                .contains("Testinator");
+    }
 
 }
