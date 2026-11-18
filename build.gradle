@@ -25,6 +25,11 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-validation-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    //Markdown zu HTML konvertieren
+    implementation 'com.vladsch.flexmark:flexmark-all:0.64.8'
+    //HTML bereinigen (Schutz vor XSS)
+    implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20211018.1'
 }
 
 tasks.named('test') {

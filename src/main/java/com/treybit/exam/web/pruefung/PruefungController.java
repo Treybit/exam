@@ -47,18 +47,14 @@ public class PruefungController {
         //model.addAttribute("pruefungForm", pruefungForm);
 
         //Das muss noch verschoben werden, erstmal nur eine Notlösung zum Testen
-        Pruefung pruefung = new Pruefung(UUID.randomUUID(),
-                pruefungForm.getTitel(),
-                pruefungForm.getBeschreibung(),
-                LocalDateTime.now(),
-                "Treybit");
+        Pruefung pruefung = pruefungForm.convertToPruefung(pruefungForm);
 
         pruefungService.speicherePruefung(pruefung);
 
         return "redirect:/pruefungen";
     }
 
-    //Prüfung aufrufen mit GET und POST
+    //Prüfung aufrufen mit GET
     @GetMapping("pruefung/{id}")
     public String pruefung(Model model, @PathVariable UUID id) {
         Optional<Pruefung> pruefung = pruefungService.findePruefungMitId(id);

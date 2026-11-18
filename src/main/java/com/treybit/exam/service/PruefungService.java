@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
+//Sollen Fragen auch hier existieren und benötige ich ein eigene Repo dafür oder nicht???
 @Service
 public class PruefungService {
 

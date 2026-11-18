@@ -3,6 +3,7 @@ package com.treybit.exam.domain;
 import java.util.Objects;
 import java.util.UUID;
 
+//Entität
 public class Frage {
     private UUID id;
     private String frage;

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+//AggregatRoot //Benötige ich ein PrüfungsBuilder??
 public class Pruefung {
     private UUID id;
     private String titel;

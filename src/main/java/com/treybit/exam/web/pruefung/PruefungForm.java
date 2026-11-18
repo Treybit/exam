@@ -1,5 +1,7 @@
 package com.treybit.exam.web.pruefung;
 
+import com.treybit.exam.domain.Pruefung;
+import com.treybit.exam.web.markdown.MarkdownToHtml;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.validation.annotation.Validated;
 
@@ -27,5 +29,17 @@ public class PruefungForm {
 
     public String getBeschreibung() {
         return beschreibung;
+    }
+
+    public Pruefung convertToPruefung(PruefungForm pruefungForm){
+
+        //Das "erstelltVon" kommt später rein
+        Pruefung pruefung = new Pruefung(UUID.randomUUID(),
+                pruefungForm.getTitel(),
+                pruefungForm.getBeschreibung(),
+                LocalDateTime.now(),
+                "Treybit");
+
+        return pruefung;
     }
 }
