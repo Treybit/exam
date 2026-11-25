@@ -1,11 +1,8 @@
 package com.treybit.exam.web.frage;
 
-import com.treybit.exam.domain.Frage;
-import com.treybit.exam.web.markdown.MarkdownToHtml;
+import com.treybit.exam.service.markdown.MarkdownToHtml;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-
-import java.util.UUID;
 
 public class FrageForm {
 
@@ -67,22 +64,4 @@ public class FrageForm {
         this.punkte = punkte;
     }
 
-    public Frage convertToFrage(FrageForm frageForm){
-
-        //Frage als Markdown in HTML konvertieren
-        String aufgabenstellungMarkdown = frageForm.getAufgabenstellung();
-        String convertAufgabenstellung = markdownToHtml.convert(aufgabenstellungMarkdown);
-        //Lösung als Markdown in HTML konvertieren
-        String loesungMarkdown = frageForm.getLoesung();
-        String convertLoesung = markdownToHtml.convert(loesungMarkdown);
-
-        Frage frage = new Frage(UUID.randomUUID(),
-                frageForm.getUeberschrift(),
-                convertAufgabenstellung,
-                convertLoesung,
-                frageForm.getPunkte());
-
-        return frage;
-
-    }
 }

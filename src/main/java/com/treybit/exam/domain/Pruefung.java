@@ -60,15 +60,18 @@ public class Pruefung {
     }
 
     public List<Frage> getFragen() {
-        //Eine unveränderte Liste, damit man die ursprüngliche nicht bearbeiten kann
-        return List.copyOf(fragen);
+
+        return fragen.stream().map(Frage::new).toList();
     }
 
-    public void addFrage(Frage frage) {
-        fragen.add(frage);
+    public void addFrage(UUID id, String ueberschrift, String aufgabenstellung, String loesung, int punkte) {
+        fragen.add(new Frage(id, ueberschrift,aufgabenstellung, loesung, punkte));
     }
 
-    public void removeFrage(Frage frage) {
+    public void removeFrage(UUID id) {
+
+        //Fehlerbehandlung
+        Frage frage = fragen.stream().filter(f -> f.getId().equals(id)).findFirst().orElseThrow();
         fragen.remove(frage);
     }
 
@@ -77,6 +80,14 @@ public class Pruefung {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         return id.equals(((Pruefung) o).id);
+    }
+
+    @Override
+    public String toString() {
+        return "Pruefung{" +
+                "fragen=" + fragen +
+                ", titel='" + titel + '\'' +
+                '}';
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.treybit.exam.web.markdown;
+package com.treybit.exam.service.markdown;
 
 import com.vladsch.flexmark.util.ast.Node;
 import com.vladsch.flexmark.html.HtmlRenderer;

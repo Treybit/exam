@@ -1,9 +1,7 @@
 package com.treybit.exam.web.pruefung;
 
 import com.treybit.exam.domain.Pruefung;
-import com.treybit.exam.web.markdown.MarkdownToHtml;
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
