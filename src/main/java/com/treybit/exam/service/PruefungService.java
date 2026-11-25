@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
-//Sollen Fragen auch hier existieren und benötige ich ein eigenes Repo dafür oder nicht???
 @Service
 public class PruefungService {
 
@@ -37,6 +36,10 @@ public class PruefungService {
 
     public void frageHinzufuegen(FrageForm frageForm, UUID id){
         Optional<Pruefung> pruefung = findePruefungMitId(id);
+        if(pruefung.isEmpty()){
+            //Wenn keine Pürfung dazu existiert erstmal ignorieren. Hier muss später irgendwie eine Exception fliegen
+            return;
+        }
         pruefung.get().addFrage(UUID.randomUUID(),
                 frageForm.getUeberschrift(),
                 frageForm.getAufgabenstellung(),
